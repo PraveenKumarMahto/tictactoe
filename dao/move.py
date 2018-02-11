@@ -6,7 +6,7 @@ db = client.game_engine
 
 movectln = db.moves
 
-def create_move_instance(game_instance_id , prev_move_id , move, player ):
+def create_move_instance(game_instance_id, prev_move_id , move, player ):
     mid = movectln.insert_one(
             { "game_instance_id" : game_instance_id,
                "prev_move_id" : prev_move_id,
@@ -16,7 +16,7 @@ def create_move_instance(game_instance_id , prev_move_id , move, player ):
     )
     return mid
 
-#def get_move_by_game_id(game_id):
-#   return movectln.find({"game_instance_id" : game_id})
+def get_move_by_move_id(game_id):
+       return movectln.find_one({"game_instance_id" : ObjectId(game_id)})
     
 

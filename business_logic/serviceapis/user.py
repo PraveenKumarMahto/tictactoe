@@ -7,14 +7,14 @@ from dao.session import get_session
 
 class User(Resource):
 
-    def get(self, user_id = None):
+    def get(self):
         params = request.args.to_dict()
 
         session = get_session(params['token'])
         current_user = session['user']
         
-        if user_id:
-            user = get_user_by_id(user_id)
+        if current_user:
+            user = get_user_by_id(current_user)
 
             if not user:
                 return {"response" : "User not found"}, 404  

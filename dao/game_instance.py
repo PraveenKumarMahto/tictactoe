@@ -24,12 +24,14 @@ def create_game_instance(user1_obj_id, user2_obj_id):
 def get_game_instance(game_obj_id):
     return ginstancecltn.find_one({"_id" : game_obj_id})
 
+def get_all_game_instances():
+    return ginstancecltn.find()
+
 def accepted_game_instance(game_obj_id):
     ginstancecltn.update_one(
         {"_id" : game_obj_id}, 
         {"$set" : { "status" : gconst.accepted_status } }
     )
-
 
 '''
 def make_move(

@@ -1,6 +1,6 @@
 from flask_restful import Resource,request
 from validators.move import validator
-from dao.move import create_move_instance
+from dao.move import create_move_instance, get_move_by_move_id
 from views import move as moveview
 
 class Move(Resource):
@@ -8,11 +8,15 @@ class Move(Resource):
         payload = request.json
         if not validator(payload):
             return {"response" : "move instance bad Response"}
-
-        create_move_instance(
-                payload["game_instance_id"],
-                payload["move"],
-                payload["player"],
-                
-                ) 
-        return moveview.single(payload)
+        
+        mid = create_move_instance(
+            payload["game_instance_id"],
+            payload["move"],
+            payload["player"],             
+            payload["prev_move_id"]
+            ) 
+        for x in mid:
+            print x
+        user_move = get_move_by_move_id(mid)
+        return "Tata"
+    #    return moveview.single(user_move)
