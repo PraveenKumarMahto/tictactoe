@@ -15,8 +15,5 @@ class Move(Resource):
             payload["player"],             
             payload["prev_move_id"]
             ) 
-        for x in mid:
-            print x
         user_move = get_move_by_move_id(mid)
-        return "Tata"
-    #    return moveview.single(user_move)
+        return  moveview.single(user_move)
